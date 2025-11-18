@@ -14,18 +14,25 @@ public class Iad
     {
         
     }
-    public static void addEmployee(ArrayList<Iad> employees,String emp)
+    public static void addEmployeeAdmin(ArrayList<Iad> employees,ArrayList<Supervisor> sup,String emp)
     {
-        employees.add(new Iad(emp));
+        if(Iad.findEmployee(employees, emp)!=null)
+            System.out.println("EID exists, cannot be reused");
+        else
+        {
+            employees.add(new Iad(emp));
+            sup.add(new Supervisor("1111",emp));
+            System.out.println(emp+" have been recruited");
+        }
     }
-    public static boolean findEmployee(ArrayList<Iad> employees,String emp)
+    public static Iad findEmployee(ArrayList<Iad> employees,String emp)
     {
-        boolean flag=false;
+        Iad flag=null;
         for(Iad id:employees)
         {
             if(id.empId.equals(emp))
             {
-                flag=true;
+                flag=id;
                 break;
             }
         }
